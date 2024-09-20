@@ -24,4 +24,4 @@ jobs:
       run: npm i newman
  
     - name: Run newman tests
-      run: npx newman run ./postman/newman8.json -e ./postman/env_test.json
+      run: npx newman run ./postman/newman8.json -e ./postman/env_test.json --reporters htmlextra --reporter-htmlextra-export ./postman/Reports
