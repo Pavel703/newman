@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "6d627ee0-5b4a-4ad2-ade3-3569103d7234",
+		"name": "newmann",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24463337"
+	},
+	"item": [
+		{
+			"name": "aggreagator test Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"pm.test(\"Product is published\", function() {\r",
+							"    pm.expect(response.published).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Check description\", function() {\r",
+							"    pm.expect(response.description).to.eql(\"\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Right version(or compare > 0 and < 3)\", function() {    \r",
+							"    pm.expect(response.version).to.match(/[0-2]/);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenRequestParams",
+							"value": [
+								{
+									"key": "",
+									"value": "sd",
+									"enabled": false,
+									"send_as": "request_body"
+								}
+							],
+							"type": "any"
+						},
+						{
+							"key": "tokenName",
+							"value": "CLARITY CPI3",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "37006c76-8da7-3f18-9eed-a684cbdffb7d",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "299292a0-9baf-3540-9fdd-a1cb5f54c168",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://oauthasservices-e96d5a956.eu2.hana.ondemand.com/oauth2/api/v1/token",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+
+{
+						"key": "Authorization",
+						"value": "{{token_cpi}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\" : \"{{token_cpi}}\"   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://p700079-iflmap.hcisbp.eu2.hana.ondemand.com/http/product/detail",
+					"protocol": "https",
+					"host": [
+						"p700079-iflmap",
+						"hcisbp",
+						"eu2",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"http",
+						"product",
+						"detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Billing get token Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set('billingToken', response.access_token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "7Hanyt3U9gpLnSAPWFipFHtIzmE=",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sb-sap-subscription-billing!b53022|revenue-cloud!b1532",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://test-idp.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
+					"protocol": "https",
+					"host": [
+						"test-idp",
+						"authentication",
+						"eu10",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"pm.test(\"Product is published\", function() {\r",
+							"    pm.expect(response.published).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Check description\", function() {\r",
+							"    pm.expect(response.description).to.eql(\"\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Right version(or compare > 0 and < 3)\", function() {    \r",
+							"    pm.expect(response.version).to.match(/[0-2]/);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sandbox.api.sap.com/subscriptionbilling/api/product-service/v1/products",
+					"protocol": "https",
+					"host": [
+						"sandbox",
+						"api",
+						"sap",
+						"com"
+					],
+					"path": [
+						"subscriptionbilling",
+						"api",
+						"product-service",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"id": "83bf9ee5-0137-42c5-bc7f-3623182ff6a0",
+	"name": "Subscription Billing",
+	"values": [
+		{
+			"key": "token_cpi",
+			"value": "2220a03c6633662453a5d7e9fdcea968",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-09-18T13:32:27.972Z",
+	"_postman_exported_using": "Postman/11.11.1"
+}
